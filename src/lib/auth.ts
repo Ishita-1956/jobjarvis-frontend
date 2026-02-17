@@ -26,8 +26,9 @@ export interface LoginResponse {
 /* =====================================================
    GOOGLE OAUTH (Backend returns JSON with redirect_url)
    ===================================================== */
-export function initiateGoogleOAuth(): void {
-  window.location.href = "/api/google-oauth";
+export function initiateGoogleOAuth(role?: string): void {
+  const url = role ? `/api/google-oauth?role=${role}` : "/api/google-oauth";
+  window.location.href = url;
 }
 
 
