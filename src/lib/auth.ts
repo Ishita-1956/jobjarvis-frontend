@@ -1,225 +1,239 @@
-// Auth utility functions for Google OAuth integration
+// ===============================
+// Auth Utility Functions
+// ===============================
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_BASE_URL = 'https://jobjarviss.infinityandbeyond.co';
 
 export type UserRole = 'jobseeker' | 'recruiter' | 'admin' | 'employee';
 
 export interface User {
-    id: number;
-    first_name: string;
-    last_name: string;
-    email: string;
-    role: UserRole;
-    candidate_id?: number;
-    company_id?: number;
-    company_name?: string;
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  role: UserRole;
+  candidate_id?: number;
+  company_id?: number;
+  company_name?: string;
 }
 
 export interface LoginResponse {
-    message: string;
-    user: User;
-    redirect_url?: string;
+  message: string;
+  user: User;
+  redirect_url?: string;
 }
 
-/**
- * Initiates Google OAuth flow by redirecting to the backend OAuth endpoint
- * This endpoint should be configured in the backend to start the Google OAuth flow
- */
-export function initiateGoogleOAuth(role: UserRole = 'jobseeker'): void {
-    if (typeof window !== 'undefined') {
-        sessionStorage.setItem('oauth_role', role);
-        // Redirect to backend Google OAuth endpoint
-        // The backend will handle the OAuth flow with Google
-        window.location.href = `${API_BASE_URL}/auth/google-login?role=${role}`;
-    }
+/* =====================================================
+   GOOGLE OAUTH (Backend returns JSON with redirect_url)
+   ===================================================== */
+export function initiateGoogleOAuth(): void {
+  window.location.href = "/api/google-oauth";
 }
 
-/**
- * Login with email and password (fallback method)
- */
+
+
+/* =====================================================
+   LOGIN WITH EMAIL & PASSWORD
+   ===================================================== */
+
 export async function loginWithCredentials(
-    email: string,
-    password: string,
-    role: UserRole
-): Promise<{ success: boolean; data?: LoginResponse; error?: string }> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password, role }),
-            credentials: 'include',
-        });
+  email: string,
+  password: string,
+  role: string
+) {
+  try {
+    const response = await fetch(
+      "https://jobjarviss.infinityandbeyond.co/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // ✅ REQUIRED
+        body: JSON.stringify({
+          email,
+          password,
+          role,
+        }),
+      }
+    );
 
-        const result = await response.json();
+    const data = await response.json();
 
-        if (!response.ok) {
-            return { success: false, error: result.error || 'Login failed' };
-        }
-
-        return { success: true, data: result };
-    } catch (error) {
-        console.error('Login error:', error);
-        return { success: false, error: 'Network error. Please try again.' };
+    if (!response.ok) {
+      return { success: false, error: data.error };
     }
+
+    return { success: true, data };
+  } catch (error) {
+    return { success: false, error: "Network error" };
+  }
 }
 
-/**
- * Get redirect URL based on user role and data
- */
+
+/* =====================================================
+   ROLE BASED REDIRECT
+   ===================================================== */
+
 export function getRedirectUrl(user: User): string {
-    switch (user.role) {
-        case 'recruiter':
-            return `/dashboard`;
-        case 'admin':
-            return `/dashboard`;
-        case 'jobseeker':
-        case 'employee':
-            return user.candidate_id
-                ? `/dashboard`
-                : '/onboarding/individual';
-        default:
-            return '/';
-    }
+  switch (user.role) {
+    case 'recruiter':
+    case 'admin':
+      return '/dashboard/enterprise';
+
+    case 'jobseeker':
+    case 'employee':
+      return user.candidate_id
+        ? '/dashboard'
+        : '/onboarding/individual';
+
+    default:
+      return '/';
+  }
 }
 
-/**
- * Get current user session from backend
- */
-export async function getCurrentUser(): Promise<User | null> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/auth/login-success`, {
-            credentials: 'include',
-        });
+/* =====================================================
+   GET CURRENT USER SESSION
+   ===================================================== */
 
-        if (!response.ok) {
-            return null;
-        }
+export async function getCurrentUser() {
+  try {
+    const response = await fetch(
+      "https://jobjarviss.infinityandbeyond.co/login-success",
+      {
+        method: "GET",
+        credentials: "include", // ✅ REQUIRED
+      }
+    );
 
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to get current user:', error);
-        return null;
-    }
+    if (!response.ok) return null;
+
+    const data = await response.json();
+
+    return data.user; // adjust if structure differs
+  } catch {
+    return null;
+  }
 }
 
-/**
- * Logout user and clear session
- */
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
 export async function logout(): Promise<void> {
-    try {
-        await fetch(`${API_BASE_URL}/auth/logout`, {
-            method: 'POST',
-            credentials: 'include',
-        });
-    } catch (error) {
-        console.error('Logout error:', error);
-    }
+  try {
+    await fetch(`${API_BASE_URL}/auth/logout`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
 
-    if (typeof window !== 'undefined') {
-        sessionStorage.clear();
-        window.location.href = '/';
-    }
+  if (typeof window !== 'undefined') {
+    sessionStorage.clear();
+    window.location.href = '/';
+  }
 }
 
-/**
- * Submit recruiter signup form
- */
+/* =====================================================
+   RECRUITER SIGNUP
+   ===================================================== */
+
 export async function signupRecruiter(data: {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string;
-    password: string;
-    company_name: string;
-    company_location: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  password: string;
+  company_name: string;
+  company_location: string;
 }): Promise<{ success: boolean; message: string }> {
-    try {
-        const formData = new FormData();
-        Object.entries(data).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
+  try {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
-        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-            method: 'POST',
-            body: formData,
-            credentials: 'include',
-        });
+    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    });
 
-        const result = await response.json();
+    const result = await response.json();
 
-        if (!response.ok) {
-            return { success: false, message: result.error || 'Signup failed' };
-        }
-
-        return { success: true, message: result.message };
-    } catch (error) {
-        console.error('Signup error:', error);
-        return { success: false, message: 'Network error. Please try again.' };
+    if (!response.ok) {
+      return { success: false, message: result.error || 'Signup failed' };
     }
+
+    return { success: true, message: result.message };
+  } catch (error) {
+    console.error('Signup error:', error);
+    return { success: false, message: 'Network error. Please try again.' };
+  }
 }
 
-/**
- * Submit jobseeker signup form
- */
+/* =====================================================
+   JOBSEEKER SIGNUP
+   ===================================================== */
+
 export async function signupJobseeker(data: {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string;
-    password: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  password: string;
 }): Promise<{ success: boolean; message: string }> {
-    try {
-        const formData = new FormData();
-        Object.entries(data).forEach(([key, value]) => {
-            formData.append(key, value);
-        });
-        formData.append('role', 'jobseeker');
+  try {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append('role', 'jobseeker');
 
-        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-            method: 'POST',
-            body: formData,
-            credentials: 'include',
-        });
+    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    });
 
-        const result = await response.json();
+    const result = await response.json();
 
-        if (!response.ok) {
-            return { success: false, message: result.error || 'Signup failed' };
-        }
-
-        return { success: true, message: result.message };
-    } catch (error) {
-        console.error('Signup error:', error);
-        return { success: false, message: 'Network error. Please try again.' };
+    if (!response.ok) {
+      return { success: false, message: result.error || 'Signup failed' };
     }
+
+    return { success: true, message: result.message };
+  } catch (error) {
+    console.error('Signup error:', error);
+    return { success: false, message: 'Network error. Please try again.' };
+  }
 }
 
-/**
- * Get terms and conditions
- */
+/* =====================================================
+   TERMS & PRIVACY
+   ===================================================== */
+
 export async function getTerms(): Promise<{ title: string; content: string } | null> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/auth/terms`);
-        if (!response.ok) return null;
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to get terms:', error);
-        return null;
-    }
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/terms`);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to get terms:', error);
+    return null;
+  }
 }
 
-/**
- * Get privacy policy
- */
 export async function getPrivacyPolicy(): Promise<{ title: string; content: string } | null> {
-    try {
-        const response = await fetch(`${API_BASE_URL}/auth/privacy`);
-        if (!response.ok) return null;
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to get privacy policy:', error);
-        return null;
-    }
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/privacy`);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to get privacy policy:', error);
+    return null;
+  }
 }

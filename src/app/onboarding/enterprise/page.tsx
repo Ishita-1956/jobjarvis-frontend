@@ -56,7 +56,7 @@ export default function EnterpriseOnboardingPage() {
         setIsLoading(true);
 
         try {
-            const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+            const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
             const response = await fetch(`${API_BASE}/auth/complete-profile`, {
                 method: 'POST',
                 headers: {
