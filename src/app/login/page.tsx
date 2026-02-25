@@ -53,27 +53,26 @@ export default function LoginPage() {
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <AuthAnimatedBackground />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10 py-12 sm:py-16">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 py-8 sm:py-12">
                 {/* Logo & Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-8 sm:mb-12"
+                    className="text-center mb-6 sm:mb-8"
                 >
-                    <Link href="/" className="inline-block mb-6 sm:mb-8 group">
-                        <motion.h1
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white"
-                            whileHover={{ scale: 1.02 }}
-                        >
-                            Job <span className="text-gradient">Jarvis</span>
-                        </motion.h1>
+                    <Link href="/" className="inline-block mb-4 group">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-shadow mx-auto">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
                     </Link>
 
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">
+                    <h2 className="text-base sm:text-lg font-bold text-white mb-2">
                         Login to Your Account
                     </h2>
-                    <p className="text-slate-400 text-base sm:text-lg max-w-md mx-auto px-4">
+                    <p className="text-slate-400 text-sm sm:text-base max-w-md mx-auto">
                         Choose your account type to continue
                     </p>
                 </motion.div>
@@ -107,14 +106,14 @@ export default function LoginPage() {
                                         {/* Top Gradient Bar */}
                                         <div className={`h-1.5 bg-gradient-to-r ${type.gradient}`} />
 
-                                        <div className="p-6 sm:p-8">
+                                        <div className="p-5 sm:p-6">
                                             {/* Icon & Title */}
-                                            <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                                <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${type.gradient} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <div className={`p-2.5 rounded-xl bg-gradient-to-br ${type.gradient} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                                                     {type.icon}
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                                                    <h3 className="text-lg font-bold text-white">
                                                         {type.label}
                                                     </h3>
                                                     <p className="text-slate-400 text-sm">{type.subtitle}</p>

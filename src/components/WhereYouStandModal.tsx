@@ -33,7 +33,7 @@ const audiences = [
     {
         id: 'enterprise',
         title: 'Enterprise Suite',
-        subtitle: "I'm hiring/managing talent",
+        subtitle: "I manage bench consultants and market them for relevant opportunities.",
         description: 'Your Command Center for talent. Source, screen, and manage candidates at scale with AI-powered precision.',
         href: '/enterprise',
         icon: (

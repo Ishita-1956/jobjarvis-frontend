@@ -93,12 +93,12 @@ const roleCards = [
 
 export default function EnterpriseFeatures() {
     return (
-        <SectionWrapper id="features" className="relative">
+        <SectionWrapper id="features" className="relative mt-24">
             {/* Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/5 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Section Header */}
-            <div className="text-center mb-16 relative z-10">
+            <div className="text-center mb-10 relative z-10">
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export default function EnterpriseFeatures() {
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
                 >
                     Built for{' '}
-                    <span className="text-gradient-violet">Staffing Agencies</span>
+                    <span className="text-gradient-violet">Staffing Companies</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -129,17 +129,19 @@ export default function EnterpriseFeatures() {
             </div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 mb-12">
                 {features.map((feature, index) => (
                     <Card key={feature.title} className="group" glow={index === 0}>
-                        {/* Icon */}
-                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} bg-opacity-10 flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                            {feature.icon}
+                        {/* Icon + Title */}
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.gradient} bg-opacity-10 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                                {feature.icon}
+                            </div>
+                            <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                         </div>
 
-                        {/* Content */}
-                        <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                        <p className="text-slate-400 leading-relaxed">{feature.description}</p>
+                        {/* Description */}
+                        <p className="text-slate-400 leading-relaxed text-sm">{feature.description}</p>
                     </Card>
                 ))}
             </div>
@@ -169,14 +171,14 @@ export default function EnterpriseFeatures() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             className={`relative bg-slate-900/50 backdrop-blur-sm border rounded-2xl p-6 hover:border-${card.color}-500/50 transition-all group ${card.color === 'violet' ? 'border-violet-500/30' :
-                                    card.color === 'purple' ? 'border-purple-500/30' :
-                                        'border-cyan-500/30'
+                                card.color === 'purple' ? 'border-purple-500/30' :
+                                    'border-cyan-500/30'
                                 }`}
                         >
                             {/* Role Badge */}
                             <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-4 ${card.color === 'violet' ? 'bg-violet-500/20 text-violet-400 border border-violet-500/30' :
-                                    card.color === 'purple' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
-                                        'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                                card.color === 'purple' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
+                                    'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
                                 }`}>
                                 {card.role}
                             </div>
@@ -188,8 +190,8 @@ export default function EnterpriseFeatures() {
                                 {card.features.map((feature) => (
                                     <li key={feature} className="flex items-center gap-2 text-slate-400 text-sm">
                                         <svg className={`w-4 h-4 ${card.color === 'violet' ? 'text-violet-400' :
-                                                card.color === 'purple' ? 'text-purple-400' :
-                                                    'text-cyan-400'
+                                            card.color === 'purple' ? 'text-purple-400' :
+                                                'text-cyan-400'
                                             }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>

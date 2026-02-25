@@ -27,7 +27,7 @@ const audienceLinks = [
         gradient: 'from-blue-500 to-cyan-500',
     },
     {
-        name: 'For Enterprise',
+        name: 'For Staffing Company',
         href: '/enterprise',
         description: 'Scale your recruiting team',
         icon: (

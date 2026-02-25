@@ -40,18 +40,6 @@ const steps = [
         badge: '5 Max',
         badgeColor: 'cyan',
     },
-    {
-        number: '04',
-        title: 'AI Takes Over',
-        description: 'Candidates experience the full Jarvis jobseeker flow. AI handles job matching, applications, interview prep, and more.',
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-        ),
-        badge: 'Automated',
-        badgeColor: 'green',
-    },
 ];
 
 export default function EnterpriseHowItWorks() {
@@ -96,7 +84,7 @@ export default function EnterpriseHowItWorks() {
 
             {/* Steps - Modern Card Layout */}
             <div className="relative z-10 mb-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {steps.map((step, index) => (
                         <motion.div
                             key={step.number}
@@ -124,13 +112,15 @@ export default function EnterpriseHowItWorks() {
                                     </span>
                                 </div>
 
-                                {/* Icon */}
-                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
-                                    {step.icon}
+                                {/* Icon + Title */}
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        {step.icon}
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-white">{step.title}</h3>
                                 </div>
 
-                                {/* Content */}
-                                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                                {/* Description */}
                                 <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
                             </div>
                         </motion.div>
@@ -138,95 +128,98 @@ export default function EnterpriseHowItWorks() {
                 </div>
             </div>
 
-            {/* Flow Visualization */}
+            {/* Org-Chart Flow Visualization */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative z-10 bg-gradient-to-r from-violet-500/10 via-purple-500/10 to-cyan-500/10 rounded-2xl border border-slate-800/50 p-8"
+                className="relative z-10 bg-gradient-to-r from-violet-500/10 via-purple-500/10 to-cyan-500/10 rounded-2xl border border-slate-800/50 p-6 mb-6"
             >
-                <div className="text-center mb-8">
-                    <h3 className="text-xl font-semibold text-white mb-2">The Complete Flow</h3>
-                    <p className="text-slate-400 text-sm">From your agency to successful placements</p>
+                <div className="text-center mb-6">
+                    <h3 className="text-lg font-semibold text-white mb-1">Organization Structure</h3>
+                    <p className="text-slate-400 text-sm">From agency admin to successful placements</p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                    {/* Agency */}
+                <div className="flex flex-col items-center gap-3">
+                    {/* Admin */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-3 bg-slate-900/50 rounded-xl px-4 py-3 border border-violet-500/30"
+                        className="flex items-center gap-2 bg-slate-900/60 rounded-xl px-4 py-2.5 border border-violet-500/40"
                     >
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
                         <div>
-                            <div className="text-white font-medium text-sm">Your Agency</div>
-                            <div className="text-slate-500 text-xs">Admin access</div>
+                            <div className="text-white font-medium text-sm">Agency Admin</div>
+                            <div className="text-slate-500 text-xs">Full control</div>
                         </div>
                     </motion.div>
 
-                    {/* Arrow */}
-                    <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                    {/* Connector line down + split */}
+                    <div className="relative w-64 h-8">
+                        <div className="absolute left-1/2 top-0 w-px h-4 bg-gradient-to-b from-violet-500/50 to-purple-500/50" />
+                        <div className="absolute left-[25%] right-[25%] top-4 h-px bg-gradient-to-r from-purple-500/50 via-purple-500/50 to-purple-500/50" />
+                        <div className="absolute left-[25%] top-4 w-px h-4 bg-purple-500/50" />
+                        <div className="absolute right-[25%] top-4 w-px h-4 bg-purple-500/50" />
+                    </div>
 
-                    {/* Recruiters */}
+                    {/* 2 Recruiters */}
+                    <div className="flex gap-10">
+                        {[1, 2].map((r) => (
+                            <div key={r} className="flex flex-col items-center gap-2">
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className="flex items-center gap-2 bg-slate-900/60 rounded-xl px-3 py-2 border border-purple-500/40"
+                                >
+                                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+                                        <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-white text-sm font-medium">Recruiter {r}</span>
+                                </motion.div>
+
+                                {/* Connector to candidates */}
+                                <div className="w-px h-3 bg-cyan-500/40" />
+
+                                {/* Candidates under each recruiter */}
+                                <div className="flex gap-1.5">
+                                    {[1, 2, 3, 4, 5].map((c) => (
+                                        <motion.div
+                                            key={c}
+                                            whileHover={{ scale: 1.1 }}
+                                            className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center"
+                                            title={`Candidate ${c}`}
+                                        >
+                                            <svg className="w-3 h-3 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                                <span className="text-slate-500 text-xs">5 candidates</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Arrow down to jobs */}
+                    <div className="w-px h-3 bg-green-500/40" />
+
+                    {/* AI Matched Jobs */}
                     <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-3 bg-slate-900/50 rounded-xl px-4 py-3 border border-purple-500/30"
+                        className="flex items-center gap-2 bg-slate-900/60 rounded-xl px-4 py-2.5 border border-green-500/40"
                     >
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <div className="text-white font-medium text-sm">Recruiters</div>
-                            <div className="text-slate-500 text-xs">Unlimited</div>
-                        </div>
-                    </motion.div>
-
-                    {/* Arrow */}
-                    <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-
-                    {/* Candidates */}
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-3 bg-slate-900/50 rounded-xl px-4 py-3 border border-cyan-500/30"
-                    >
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <div className="text-white font-medium text-sm">Candidates</div>
-                            <div className="text-slate-500 text-xs">5 per recruiter</div>
-                        </div>
-                    </motion.div>
-
-                    {/* Arrow */}
-                    <svg className="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-
-                    {/* Jobs */}
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="flex items-center gap-3 bg-slate-900/50 rounded-xl px-4 py-3 border border-green-500/30"
-                    >
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </div>
                         <div>
-                            <div className="text-white font-medium text-sm">Dream Jobs</div>
-                            <div className="text-slate-500 text-xs">AI-matched</div>
+                            <div className="text-white font-medium text-sm">AI-Matched Jobs</div>
+                            <div className="text-slate-500 text-xs">500+ daily applications</div>
                         </div>
                     </motion.div>
                 </div>
@@ -237,7 +230,7 @@ export default function EnterpriseHowItWorks() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10"
+                className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10"
             >
                 {[
                     { value: '2 min', label: 'Setup Time' },
@@ -245,8 +238,8 @@ export default function EnterpriseHowItWorks() {
                     { value: '5', label: 'Candidates/Recruiter' },
                     { value: '24/7', label: 'AI Assistance' },
                 ].map((stat) => (
-                    <div key={stat.label} className="text-center bg-slate-900/30 rounded-xl p-6 border border-slate-800/50">
-                        <div className="text-3xl md:text-4xl font-bold text-gradient-violet mb-2">{stat.value}</div>
+                    <div key={stat.label} className="text-center bg-slate-900/30 rounded-xl p-4 border border-slate-800/50">
+                        <div className="text-2xl md:text-3xl font-bold text-gradient-violet mb-1">{stat.value}</div>
                         <div className="text-slate-400 text-sm">{stat.label}</div>
                     </div>
                 ))}

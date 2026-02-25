@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import IndividualHero from '@/components/sections/IndividualHero';
 import IndividualFeatures from '@/components/sections/IndividualFeatures';
 import IndividualHowItWorks from '@/components/sections/IndividualHowItWorks';
+import IndividualVideoDemo from '@/components/sections/IndividualVideoDemo';
 import IndividualCTA from '@/components/sections/IndividualCTA';
 import Footer from '@/components/Footer';
 
@@ -18,6 +19,7 @@ export default function IndividualsPage() {
                 <IndividualHero />
                 <IndividualFeatures />
                 <IndividualHowItWorks />
+                <IndividualVideoDemo />
                 <IndividualCTA />
             </main>
             <Footer />

@@ -88,7 +88,7 @@ export default function Footer() {
                             </span>
                         </a>
                         <p className="text-slate-400 text-sm leading-relaxed max-w-xs mb-8">
-                            One engine. Two ways to win. Your AI-powered job application assistant that works 24/7—whether you're seeking your dream role or building world-class teams.
+                            Job Jarvis centralizes job discovery, matching, and application execution across every major hiring channel, with built-in outreach and referral campaigns.
                         </p>
                         {/* Social Links */}
                         <div className="flex items-center gap-3">
@@ -179,7 +179,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="mt-16 pt-8 border-t border-slate-800/30 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-slate-500 text-sm">
-                        © 2026 Job Jarvis. All rights reserved.
+                        © 2025 Job Jarvis. All rights reserved.
                     </p>
                     <p className="text-slate-600 text-sm flex items-center gap-2">
                         <span>Made with</span>

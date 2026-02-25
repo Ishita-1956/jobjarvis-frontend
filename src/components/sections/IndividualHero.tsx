@@ -7,7 +7,7 @@ import AnimatedBackground from '../AnimatedBackground';
 
 export default function IndividualHero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-24">
             <AnimatedBackground />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
@@ -17,11 +17,9 @@ export default function IndividualHero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
                     >
-                        Land Your Dream Job.{' '}
-                        <span className="text-gradient-blue">Let Jarvis</span>{' '}
-                        Do the Heavy Lifting.
+                        <span className="text-gradient">3X</span> Applications{' '}
                     </motion.h1>
 
                     {/* Subheadline */}
@@ -31,8 +29,7 @@ export default function IndividualHero() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
                     >
-                        Stop wasting hours on repetitive applications. Set your preferences,
-                        and watch the interviews roll in. Jarvis applies to hundreds of jobs while you sleep.
+                        Job Jarvis is your AI job search co-pilot that finds matching jobs, optimizes your resume, and applies for you so you can get more interviews without burning hours every day.
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -52,7 +49,7 @@ export default function IndividualHero() {
                                     </svg>
                                 }
                             >
-                                Start Free Trial
+                                Start Trial
                             </Button>
                         </Link>
                         <Button variant="secondary" size="lg">
@@ -88,90 +85,52 @@ export default function IndividualHero() {
                     </motion.div>
                 </div>
 
-                {/* Hero Visual - Job Seeker Dashboard */}
+                {/* Engaging Video CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="mt-16 relative"
                 >
-                    <div className="relative mx-auto max-w-5xl">
-                        {/* Dashboard Preview */}
-                        <div className="relative rounded-2xl overflow-hidden border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-950/90 backdrop-blur-xl shadow-2xl shadow-blue-500/10">
-                            {/* Top Bar */}
-                            <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800/50">
-                                <div className="flex gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                                </div>
-                                <div className="flex-1 text-center text-slate-500 text-sm">My Job Search Dashboard</div>
-                            </div>
+                    <div className="relative mx-auto max-w-3xl">
+                        <div
+                            onClick={() => {
+                                const el = document.getElementById('individual-video-demo');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="relative rounded-2xl overflow-hidden border border-slate-800/50 bg-gradient-to-br from-slate-900/90 to-slate-950/90 backdrop-blur-xl shadow-2xl shadow-blue-500/10 cursor-pointer group hover:border-cyan-500/30 transition-all duration-500"
+                        >
+                            <div className="py-10 px-8 flex flex-col items-center text-center">
+                                {/* Play Icon */}
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 shadow-xl shadow-cyan-500/30 group-hover:shadow-cyan-500/50 transition-shadow"
+                                >
+                                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </motion.div>
 
-                            {/* Dashboard Content */}
-                            <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-                                {/* Stats Cards */}
-                                <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl p-4 border border-blue-500/20">
-                                    <div className="text-slate-400 text-sm mb-1">Applications Today</div>
-                                    <div className="text-3xl font-bold text-white">47</div>
-                                    <div className="text-blue-400 text-sm mt-1">↑ Auto-applied</div>
-                                </div>
-                                <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
-                                    <div className="text-slate-400 text-sm mb-1">Total Applied</div>
-                                    <div className="text-3xl font-bold text-white">892</div>
-                                    <div className="text-green-400 text-sm mt-1">This month</div>
-                                </div>
-                                <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
-                                    <div className="text-slate-400 text-sm mb-1">Interview Invites</div>
-                                    <div className="text-3xl font-bold text-white">23</div>
-                                    <div className="text-green-400 text-sm mt-1">+5 this week</div>
-                                </div>
-                                <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
-                                    <div className="text-slate-400 text-sm mb-1">Response Rate</div>
-                                    <div className="text-3xl font-bold text-gradient-blue">8.2%</div>
-                                    <div className="text-slate-500 text-sm mt-1">Industry avg: 2%</div>
-                                </div>
+                                {/* Headline */}
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                                    See It In Action
+                                </h3>
+                                <p className="text-slate-400 text-base max-w-lg mb-6">
+                                    Watch how Jarvis finds, matches, and applies to jobs for you , and you can focus on what matters most.
+                                </p>
 
-                                {/* Activity Feed */}
-                                <div className="md:col-span-4 bg-slate-800/30 rounded-xl p-4 border border-slate-700/50">
-                                    <div className="flex items-center justify-between mb-3">
-                                        <div className="text-white font-medium">Live Application Feed</div>
-                                        <div className="flex items-center gap-2 text-green-400 text-sm">
-                                            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                                            Jarvis is working
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        {[
-                                            { company: 'Google', role: 'Senior Frontend Engineer', status: 'Just Applied', time: 'now' },
-                                            { company: 'Stripe', role: 'Full Stack Developer', status: 'Applied', time: '2m ago' },
-                                            { company: 'Notion', role: 'React Developer', status: 'Interview Scheduled!', time: '1h ago' },
-                                        ].map((job, i) => (
-                                            <div key={i} className="flex items-center justify-between py-2 border-b border-slate-700/30 last:border-0">
-                                                <div className="flex items-center gap-3">
-                                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold ${i === 0 ? 'bg-gradient-to-br from-blue-500 to-cyan-500' : 'bg-slate-700/50'}`}>
-                                                        {job.company[0]}
-                                                    </div>
-                                                    <div>
-                                                        <div className="text-white">{job.role}</div>
-                                                        <div className="text-slate-500 text-sm">{job.company}</div>
-                                                    </div>
-                                                </div>
-                                                <div className="text-right">
-                                                    <div className={`text-sm ${job.status.includes('Interview') ? 'text-green-400' : job.status === 'Just Applied' ? 'text-blue-400' : 'text-slate-400'}`}>
-                                                        {job.status}
-                                                    </div>
-                                                    <div className="text-slate-600 text-xs">{job.time}</div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                {/* Scroll indicator */}
+                                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                    </svg>
+                                    Watch How It Works
                                 </div>
                             </div>
                         </div>
 
                         {/* Glow Effect */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10" />
+                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10 opacity-60" />
                     </div>
                 </motion.div>
             </div>

@@ -28,8 +28,8 @@ const audiences = [
     },
     {
         id: 'enterprise',
-        title: 'Enterprise Suite',
-        subtitle: "I'm hiring/managing talent",
+        title: 'Staffing Companies',
+        subtitle: "I have Bench consultant ,We market them ",
         description: 'Your Command Center for talent. Source, screen, and manage candidates at scale with AI-powered precision.',
         href: '/enterprise',
         icon: (
@@ -52,7 +52,7 @@ const audiences = [
 
 export default function WhereYouStand() {
     return (
-        <section id="where-you-stand" className="relative py-24 md:py-32 overflow-hidden">
+        <section id="where-you-stand" className="relative py-16 md:py-20 overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#050510] via-[#080818] to-[#050510]" />
 
@@ -96,7 +96,7 @@ export default function WhereYouStand() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
                 {/* Header */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function WhereYouStand() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                        className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3"
                     >
                         Where Do You{' '}
                         <span className="relative inline-block">
@@ -155,14 +155,14 @@ export default function WhereYouStand() {
                                     {/* Top Gradient Bar */}
                                     <div className={`h-1.5 bg-gradient-to-r ${audience.gradient}`} />
 
-                                    <div className="p-8">
+                                    <div className="p-6">
                                         {/* Header */}
                                         <div className="flex items-start justify-between mb-6">
                                             <div>
-                                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${audience.gradient} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-xl`}>
+                                                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${audience.gradient} flex items-center justify-center text-white mb-3 group-hover:scale-110 transition-transform duration-300 shadow-xl`}>
                                                     {audience.icon}
                                                 </div>
-                                                <h3 className="text-2xl font-bold text-white mb-2">
+                                                <h3 className="text-xl font-bold text-white mb-1">
                                                     {audience.title}
                                                 </h3>
                                                 <p className="text-slate-400 text-base">
@@ -177,15 +177,15 @@ export default function WhereYouStand() {
                                         </div>
 
                                         {/* Description */}
-                                        <p className="text-slate-400 leading-relaxed mb-6">
+                                        <p className="text-slate-400 leading-relaxed mb-4 text-sm">
                                             {audience.description}
                                         </p>
 
                                         {/* Stats */}
-                                        <div className="grid grid-cols-2 gap-4 mb-6">
+                                        <div className="grid grid-cols-2 gap-3 mb-4">
                                             {audience.stats.map((stat) => (
-                                                <div key={stat.label} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40 group-hover:border-slate-600/50 transition-colors">
-                                                    <div className={`text-2xl font-bold bg-gradient-to-r ${audience.gradient} bg-clip-text text-transparent`}>
+                                                <div key={stat.label} className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/40 group-hover:border-slate-600/50 transition-colors">
+                                                    <div className={`text-xl font-bold bg-gradient-to-r ${audience.gradient} bg-clip-text text-transparent`}>
                                                         {stat.value}
                                                     </div>
                                                     <div className="text-slate-500 text-sm">

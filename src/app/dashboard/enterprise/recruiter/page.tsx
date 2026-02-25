@@ -182,11 +182,10 @@ export default function RecruiterDashboard() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
                 {[
                     { label: 'My Candidates', icon: '👥', desc: 'View and manage your candidates', href: '/dashboard/enterprise/recruiter/candidates' },
-                    { label: 'My Jobs', icon: '💼', desc: 'View assigned job postings', href: '/dashboard/enterprise/recruiter/jobs' },
                     { label: 'My Analytics', icon: '📈', desc: 'View your performance metrics', href: '/dashboard/enterprise/recruiter/analytics' },
                 ].map((action) => (
                     <motion.a

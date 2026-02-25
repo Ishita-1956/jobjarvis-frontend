@@ -4,19 +4,19 @@ import { motion } from 'framer-motion';
 import SectionWrapper from '../SectionWrapper';
 
 const manualPains = [
-    'Hours spent customizing each application',
-    'Miss opportunities while you sleep',
-    'Inconsistent application quality',
-    'Limited to what you find manually',
-    'Burnout from repetitive tasks',
+'Juggling between multiple job boards',
+'Limited to a few platforms you can manually check',
+'High effort per application, Low output',
+'Slow response to new openings',
+'Inconsistent application quality'
 ];
 
 const jarvisBenefits = [
-    'AI personalizes applications instantly',
-    'Applies to jobs 24/7 automatically',
-    'Optimized applications every time',
-    'Access to hidden job market',
-    'Focus on interviews and upskilling',
+'Personalized applications at scale',
+'24/7 automated job applications',
+'Consistent, optimized application quality',
+'Broader coverage beyond manual job boards',
+'Faster response to new openings'
 ];
 
 export default function WhyJarvis() {
@@ -40,7 +40,7 @@ export default function WhyJarvis() {
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
                 >
                     Manual Applications vs{' '}
-                    <span className="text-gradient">AI Delegation</span>
+                    <span className="text-gradient">Job Jarvis</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}

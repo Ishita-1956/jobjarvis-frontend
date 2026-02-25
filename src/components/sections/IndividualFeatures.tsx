@@ -108,14 +108,16 @@ export default function IndividualFeatures() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
                 {features.map((feature, index) => (
                     <Card key={feature.title} className="group" glow={index === 0}>
-                        {/* Icon */}
-                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} bg-opacity-10 flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                            {feature.icon}
+                        {/* Icon + Title */}
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.gradient} bg-opacity-10 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                                {feature.icon}
+                            </div>
+                            <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                         </div>
 
-                        {/* Content */}
-                        <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                        <p className="text-slate-400 leading-relaxed">{feature.description}</p>
+                        {/* Description */}
+                        <p className="text-slate-400 leading-relaxed text-sm">{feature.description}</p>
                     </Card>
                 ))}
             </div>

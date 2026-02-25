@@ -28,7 +28,7 @@ export default function JobJarvisLogo({
             <motion.div
                 whileHover={{ rotate: 180, scale: 1.1 }}
                 transition={{ duration: 0.5, type: 'spring' }}
-                className={`${config.icon} rounded-xl bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30 relative overflow-hidden`}
+                className={`${config.icon} rounded-xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center shadow-lg shadow-blue-500/25 relative overflow-hidden`}
             >
                 {/* Shimmer overlay */}
                 <motion.div
@@ -51,14 +51,14 @@ export default function JobJarvisLogo({
                     />
                 </svg>
                 {/* Ambient glow */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 to-cyan-400/20 blur-sm" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 to-violet-400/20 blur-sm" />
             </motion.div>
 
             {showText && (
                 <div>
                     <h1 className={`${config.text} font-bold text-white leading-tight`}>
                         Job
-                        <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        <span className="text-gradient">
                             Jarvis
                         </span>
                     </h1>

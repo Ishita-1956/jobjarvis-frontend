@@ -1,9 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import SectionWrapper from '../SectionWrapper';
-import Button from '../Button';
 
 const testimonials = [
     {
@@ -32,6 +30,14 @@ const testimonials = [
     },
 ];
 
+const benefits = [
+    'Get more interviews (not just more applications)',
+    'Save hours every week on manual applying',
+    'Stop guessing what works—use data instead',
+    'Stay consistent without burning out',
+    'Feel in control of your job search again',
+];
+
 export default function IndividualCTA() {
     return (
         <SectionWrapper className="relative overflow-hidden">
@@ -42,17 +48,17 @@ export default function IndividualCTA() {
             </div>
 
             {/* Testimonials */}
-            <div className="relative z-10 mb-20">
+            <div className="relative z-10 mb-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-12"
+                    className="text-center mb-10"
                 >
                     <span className="text-blue-400 text-sm font-semibold tracking-wider uppercase mb-4 block">
                         Success Stories
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                         Join Thousands of{' '}
                         <span className="text-gradient-blue">Successful Job Seekers</span>
                     </h2>
@@ -80,7 +86,7 @@ export default function IndividualCTA() {
 
                             {/* Author */}
                             <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white font-bold">
                                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                                 </div>
                                 <div>
@@ -94,7 +100,7 @@ export default function IndividualCTA() {
                 </div>
             </div>
 
-            {/* CTA Card */}
+            {/* What Changes Section */}
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -103,88 +109,56 @@ export default function IndividualCTA() {
             >
                 <div className="relative bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800/50 rounded-3xl p-8 md:p-12 overflow-hidden">
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-cyan-500/10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-violet-500/10" />
 
                     {/* Content */}
-                    <div className="relative z-10 text-center max-w-3xl mx-auto">
+                    <div className="relative z-10 max-w-3xl mx-auto">
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                            className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8 text-center"
                         >
-                            Ready to Let Jarvis{' '}
-                            <span className="text-gradient-blue">Work for You</span>?
+                            What changes when Job Jarvis runs your{' '}
+                            <span className="text-gradient">job search</span>?
                         </motion.h2>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-slate-400 text-lg mb-8 max-w-2xl mx-auto"
-                        >
-                            Start your free trial today. No credit card required.
-                            Get 50 free applications and see the difference AI-powered job hunting makes.
-                        </motion.p>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                        >
-                            <Link href="/login/individual">
-                                <Button
-                                    variant="primary"
-                                    size="lg"
-                                    icon={
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                        </svg>
-                                    }
+                        {/* Benefits List */}
+                        <div className="space-y-4 mb-8">
+                            {benefits.map((benefit, index) => (
+                                <motion.div
+                                    key={benefit}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.1 + index * 0.08 }}
+                                    className="flex items-start gap-3"
                                 >
-                                    Start Free Trial
-                                </Button>
-                            </Link>
-                            <Button variant="secondary" size="lg">
-                                Schedule Demo
-                            </Button>
-                        </motion.div>
+                                    <div className="mt-1 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 flex items-center justify-center flex-shrink-0">
+                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-slate-300 text-lg">{benefit}</span>
+                                </motion.div>
+                            ))}
+                        </div>
 
-                        {/* Trust Lines */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                        {/* Closer Line */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="mt-8 flex flex-wrap items-center justify-center gap-6 text-slate-500 text-sm"
+                            transition={{ delay: 0.5 }}
+                            className="text-center text-lg sm:text-xl font-medium text-gradient"
                         >
-                            <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                Free 50 applications
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                No credit card
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                Cancel anytime
-                            </div>
-                        </motion.div>
+                            Less stress. More momentum. Better results.
+                        </motion.p>
                     </div>
 
                     {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/10 rounded-full blur-[80px]" />
                 </div>
             </motion.div>
         </SectionWrapper>

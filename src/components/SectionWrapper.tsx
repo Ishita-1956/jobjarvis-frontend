@@ -23,7 +23,7 @@ export default function SectionWrapper({
             transition={{ duration: 0.6 }}
             className={`
         relative
-        py-14 md:py-20 lg:py-24
+        py-6 md:py-8 lg:py-10
         overflow-hidden
         ${className}
       `}

@@ -48,7 +48,7 @@ const steps = [
 
 export default function IndividualHowItWorks() {
     return (
-        <SectionWrapper id="how-it-works" className="relative">
+        <SectionWrapper id="how-it-works" className="relative !pb-16">
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px]" />
@@ -88,8 +88,8 @@ export default function IndividualHowItWorks() {
 
             {/* Steps */}
             <div className="relative z-10">
-                {/* Connection Line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/30 via-cyan-500/30 to-transparent hidden lg:block" />
+                {/* Connection Line - shortened with top/bottom inset so it doesn't touch edges */}
+                <div className="absolute left-1/2 top-28 bottom-28 w-px bg-gradient-to-b from-blue-500/30 via-cyan-500/30 to-transparent hidden lg:block" />
 
                 <div className="space-y-12 lg:space-y-0">
                     {steps.map((step, index) => (
@@ -111,15 +111,13 @@ export default function IndividualHowItWorks() {
 
                                     {/* Card */}
                                     <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-2xl p-6 hover:border-blue-500/30 transition-all group">
-                                        <div className="flex items-start gap-4">
-                                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
                                                 {step.icon}
                                             </div>
-                                            <div className="text-left">
-                                                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                                                <p className="text-slate-400 leading-relaxed">{step.description}</p>
-                                            </div>
+                                            <h3 className="text-lg font-semibold text-white">{step.title}</h3>
                                         </div>
+                                        <p className="text-slate-400 leading-relaxed mt-2">{step.description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -132,25 +130,6 @@ export default function IndividualHowItWorks() {
                     ))}
                 </div>
             </div>
-
-            {/* CTA */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center mt-16 relative z-10"
-            >
-                <p className="text-slate-400 mb-6">Ready to let Jarvis work for you?</p>
-                <a
-                    href="#"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-1"
-                >
-                    Start Free Trial
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                </a>
-            </motion.div>
         </SectionWrapper>
     );
 }
